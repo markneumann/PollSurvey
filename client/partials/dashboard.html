@@ -1,0 +1,28 @@
+<!-- dashboard partial -->
+<div ng-controller='DashboardController'>
+    <h3>Dashboard</h3>
+    1. Links to Home, Add a Question, Logout (not logged in?)
+    2. popup Div for login
+    3. popup Div for score
+    3. login div needs to handle existing or new user_factory --> maybe another partial?
+    4. show a table with all the questions
+    <!-- insert Play Div here -->
+    <!-- <div id="Add">
+    </div> -->
+    <h3>Home | Add a Question</h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h3>Logout</h3> <!-- Put this in the dashboard-->
+    <br>
+    <br>
+    <br>
+    <br>
+    <div id= 'filter'>
+        <input type="text" ng-model="filter_name" placeholder="filter">   {{filter_name}}
+    </div>
+
+    <table>
+        <tr><th>Name</th><th>Score</th><th>Percentage</th></tr>
+        <tr ng-repeat="test in tests | filter: {name:filter_name}"  ng-class-odd="'d1'" ng-class-even="'d2'">
+            <td>{{test.user}}</td>
+            <td>{{test.score}}</td><td>Calculate percentage here</td>
+        </tr>
+    </table>
+</div>
