@@ -3,7 +3,7 @@ console.log('loading app.js');
 var MEANModule = angular.module('MEAN_app', ['ngRoute']);
 
 // the .controller() method adds a controller to the module
-OCModule.config(function($routeProvider){
+MEANModule.config(function($routeProvider){
     $routeProvider
     .when('/', {
         templateUrl: '/partials/dashboard.html'

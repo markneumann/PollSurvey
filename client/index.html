@@ -8,10 +8,11 @@
     <script src='/angular/angular.js'></script>
     <script src="/angular-route/angular-route.js"></script>
     <script src="/app.js"></script>
-    <script src="/static/js/factories/customer_factory.js"></script>
-    <script src="/static/js/factories/order_factory.js"></script>
-    <script src="/static/js/controllers/customer_controller.js"></script>
-    <script src="/static/js/controllers/order_controller.js"></script>
+    <script src="/static/js/factories/c_question_factory.js"></script>
+    <script src="/static/js/factories/c_test_factory.js"></script>
+    <script src="/static/js/controllers/c_dashboard_controller.js"></script>
+    <script src="/static/js/controllers/c_question_controller.js"></script>
+    <script src="/static/js/controllers/c_test_controller.js"></script>
     </script>
 
     <link rel='stylesheet' href='/static/css/styles.css'>
@@ -20,9 +21,9 @@
 <!-- everything in the body is going to use the names controller (this gives us access to the names controller $scope) -->
 
 <body>
+    LOADED INDEX
     <hr>
     <div>
-        <a href="#/">Dashboard</a> | <a href="#/question">Add a Question</a>
         <div ng-view="">
     </div>
 

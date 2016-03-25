@@ -1,0 +1,14 @@
+<!-- <form name="answerForm">
+    <label>
+        <input type="radio" ng-model='question.theanswer' value={{question.asnwer}}>
+        {{question.answer}}
+    <label>
+    <label>
+        <input type="radio" ng-model='question.theanswer' value={{question.fact1}}>
+        {{question.fact1}}
+    <label>
+    <label>
+        <input type="radio" ng-model='question.theanswer' value={{question.fac2}}>
+        {{question.fact2}}
+    <label>
+</form> -->

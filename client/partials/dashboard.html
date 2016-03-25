@@ -5,7 +5,7 @@
     2. popup Div for login
     3. popup Div for score
     3. login div needs to handle existing or new user_factory --> maybe another partial?
-    4. show a table with all the questions
+    4. show a table with all the questions(DONE)
     <!-- insert Play Div here -->
     <!-- <div id="Add">
     </div> -->
@@ -21,7 +21,7 @@
     <table>
         <tr><th>Name</th><th>Score</th><th>Percentage</th></tr>
         <tr ng-repeat="test in tests | filter: {name:filter_name}"  ng-class-odd="'d1'" ng-class-even="'d2'">
-            <td>{{test.user}}</td>
+            <td>{{test.name}}</td>
             <td>{{test.score}}</td><td>Calculate percentage here</td>
         </tr>
     </table>
