@@ -4,14 +4,65 @@
     2. loop through 3 questions (random?)
     3. support a refresh with current answers and error prompt
 
-    <table>
+    <table ng-model="questions">
         <tr><th>Hi SomeUser!<br>
         Choose an answer for each of the questions and submit the test once done.<br>
         Good Luck!<br>
+        {{$scope.questions.length}}
         </th></tr>
-        <tr ng-repeat="question in questions">
-            <td>{{question}}<br>
-                </td>
+        <tr>
+            <td>{{questions[0].question}}<br>
+                <form name="answerForm">
+                    <label>
+                        <input type="radio" ng-model='question.theanswer' value={{questions[0].answer}}>
+                        {{questions[0].answer}}<br>
+                    <label>
+                    <label>
+                        <input type="radio" ng-model='question.theanswer' value={{questions[0].fake1}}>
+                        {{questions[0].fake1}}<br>
+                    <label>
+                    <label>
+                        <input type="radio" ng-model='question.theanswer' value={{questions[0].fake2}}>
+                        {{questions[0].fake2}}<br>
+                    <label>
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td>{{questions[1].question}}<br>
+                <form name="answerForm">
+                    <label>
+                        <input type="radio" ng-model='question.theanswer' value={{questions[1].answer}}>
+                        {{questions[1].answer}}<br>
+                    <label>
+                    <label>
+                        <input type="radio" ng-model='question.theanswer' value={{questions[1].fake1}}>
+                        {{questions[1].fake1}}<br>
+                    <label>
+                    <label>
+                        <input type="radio" ng-model='question.theanswer' value={{questions[1].fake2}}>
+                        {{questions[1].fake2}}<br>
+                    <label>
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td>{{questions[2].question}}<br>
+                <form name="answerForm">
+                    <label>
+                        <input type="radio" ng-model='question.theanswer' value={{questions[2].answer}}>
+                        {{questions[2].answer}}<br>
+                    <label>
+                    <label>
+                        <input type="radio" ng-model='question.theanswer' value={{questions[2].fake1}}>
+                        {{questions[2].fake1}}<br>
+                    <label>
+                    <label>
+                        <input type="radio" ng-model='question.theanswer' value={{questions[2].fake2}}>
+                        {{questions[2].fake2}}<br>
+                    <label>
+                </form>
+            </td>
         </tr>
     </table>
     <div class="button"><input type='submit' value='Submit' ng-click='submitTest(user)'</div>

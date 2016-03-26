@@ -19,26 +19,27 @@ module.exports = (function() {
             });
         },
 
-        // new_question: function(req, res) {
-        //     console.log("--> new question path");
-        //     console.log("req.body =", req.body);
-        //     var newQuestion = new Question({
-        //         name: req.body.name,
-        //         product:  req.body.product,
-        //         quantity: req.body.quantity
-        //     });
-        //     newQuestion.save()
-        //     .then(function() {
-        //         console.log("return 200");
-        //         res.status(200); // send back http 200 status if successful
-        //         res.json(newQuestion);
-        //     })
-        //     .catch (function(err){
-        //         console.log(err);
-        //         res.status(500); // send back http 200 status if successful
-        //         res.json({error: err});
-        //     });
-        // },
+        new_question: function(req, res) {
+            console.log("--> new question path");
+            console.log("req.body =", req.body);
+            var newQuestion = new Question({
+                question: req.body.question,
+                answer:  req.body.answer,
+                fake1: req.body.fake1,
+                fake2: req.body.fake2
+            });
+            newQuestion.save()
+            .then(function() {
+                console.log("return 200");
+                res.status(200); // send back http 200 status if successful
+                res.json(newQuestion);
+            })
+            .catch (function(err){
+                console.log(err);
+                res.status(500); // send back http 200 status if successful
+                res.json({error: err});
+            });
+        },
 
 //
 //         edit_question: function(req, res) {

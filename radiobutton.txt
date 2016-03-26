@@ -12,3 +12,6 @@
         {{question.fact2}}
     <label>
 </form> -->
+
+
+<div class="button"><input type='submit' value='Submit' ng-click='submitTest(user)'</div>

@@ -6,22 +6,18 @@
     3. Fake Answer 1
     4. Fake Answer 2
     5. Cancel and Submit
-    <!-- <div id="Add">
-        <b>Add a new order</b><br>
+    <div >
+        <h3>Home | Add a Question</h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h3>Logout</h3> <!-- Put this in the dashboard-->
+
+        <h2>New Question</h2>
             <form>
-                Customer
-                    <select ng-model='new_order.name'
-                            ng-options='customer.name for customer in customers'>
-                    </select>
-                <br>
-                Quantity <input type="text" ng-model="new_order.quantity" placeholder="1" tabindex="2">
-                <select ng-model='new_order.product'>
-                    <option value='rocks'>Rocks</option>
-                    <option value='pebbles'>Pebbles</option>
-                    <option value='stones'>Stones</option>
-                    <option value='boulders'>Boulders</option>
-                    <option value='sand'>Sand</option>
-                <input type="submit" ng-click="addorder()" tabindex="4">
+                <form action='/questions' method='post'>
+                    Question: <input type='text' ng-model='new_q.question'><br>
+                    Correct Answer: <input type='text' ng-model='new_q.answer'><br>
+                    Fake Answer 1: <input type='text' ng-model='new_q.fake1'><br>
+                    Fake Answer 2: <input type='text' ng-model='new_q.fake2'><br>
+                    <input type='submit' ng-click="addquestion()">
+                </form>
             <form>
         <br> -->
 

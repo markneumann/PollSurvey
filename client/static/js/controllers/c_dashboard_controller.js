@@ -2,7 +2,8 @@ console.log('loading dashboard_controller');
 // Now let's create a controller with some hardcoded data!
 MEANModule.controller('DashboardController', function($scope, TestFactory) {
     // This line goes at the top of the controller callback because the minute the controller gets called upon we want to create the $scope.tests array
-    console.log('top of test controller');
+
+    console.log('top of dashboard controller');
     TestFactory.index(function(data) {
         console.log("TestFactory.index");
         $scope.tests = data;

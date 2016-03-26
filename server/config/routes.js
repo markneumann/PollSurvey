@@ -11,7 +11,7 @@ module.exports = function(app){
     // // // app.get('/orders/remove/:id', Order.remove_order);
     // // // app.get('/orders/show/:id', Order.show_order);
     app.get('/questions', Question.index); // Return 3 questions (random), with answers, etc.. for test partial
-    // app.post('/questions', Question.new_question);  // Create a new question submitted fro question partial
+    app.post('/questions', Question.new_question);  // Create a new question submitted fro question partial
     // //app.get('/customers/remove/:id', Customer.remove_customer);
     // // app.get('/customers     /show/:id', Customer.show_customer);
     app.get("*", route404);

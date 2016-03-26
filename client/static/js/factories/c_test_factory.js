@@ -1,9 +1,10 @@
 console.log('loading test_factory');
 // // create the TestFactory
+
 MEANModule.factory('TestFactory', function($http) {
+
     var factory = {};
     var tests = [];
-
     factory.index = function(callback) {
         console.log("factory.index");
         // Where do we get access to $http?
