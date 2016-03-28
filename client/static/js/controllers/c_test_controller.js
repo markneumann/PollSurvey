@@ -1,6 +1,7 @@
 console.log('loading test_controller');
 // //
-MEANModule.controller('TestController', function($scope, QuestionFactory, TestFactory) {
+MEANModule.controller('TestController',
+    function($scope, QuestionFactory, TestFactory, UserFactory) {
     // This line goes at the top of the controller callback because the minute the controller gets called upon we want to create the $scope.friends array
     $scope.errorArea = {};
 
@@ -67,6 +68,8 @@ MEANModule.controller('TestController', function($scope, QuestionFactory, TestFa
             TestFactory.create(results,
                 function(theOutput) {
                     console.log('returned from factory', theOutput);
+                    $scope.playedGame = true;
+                    $scope.theResult = correct;
                     $scope = $scope || angular.element(document).scope();
                     if($scope.$$phase){
                         window.location = ('#/');

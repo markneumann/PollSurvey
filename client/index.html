@@ -37,7 +37,7 @@
     </pre> -->
     <div id = 'variable' ng-controller='UserController'>
 
-            <div id = 'login'>
+            <div id = 'login' ng-hide='loggedIn'>
                 Display if the user name is undefined.
                 Put the login input here.  Submit to User Controller login<br>
                 <input type="text" ng-model="user.name" placeholder="name" tabindex="1"><br>
@@ -45,14 +45,15 @@
                 {{user.name}}
             </div>
 
-            <div id = 'play' ng-model='user.name'>
+            <div id = 'score' ng-model='user.name' ng-show='playedGame'>
+                <h2>That was great, {{user.name}}!  Your score is {{theResult}}/3 (100%).<h2>
+            </div>
+
+            <div id = 'play' ng-model='user.name' ng-show='loggedIn'>
                 Welcome {{user.name}}
                 <div class="playbutton"><input type='submit' value='PLAY!' ng-click='play()'></div>
             </div>
 
-            <div id = 'score'>
-                <h2>That was great, {{user.name}}!  Your score is {{results.score}}/3 (100%).<h2>
-            </div>
     <hr>
         <div>
             <div ng-view="">
