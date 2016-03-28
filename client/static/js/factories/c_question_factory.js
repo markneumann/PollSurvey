@@ -20,15 +20,18 @@ MEANModule.factory('QuestionFactory', function($http) {
         });
     };
 //
-    factory.create = function(data, callback, forErrors) {
+    factory.create = function(data, callback) {
         console.log("factory.new data:", data);
-        console.log('the question name', data);
+        console.log('the question ', data);
         $http.post('/questions',data)
         .then(function(output) {
-            console.log("get /new response: ", output.data);
+            console.log("get /new q response: ", output.data);
             callback(output.data);
         })
-        .catch (forErrors);
+        .catch (function(err) {
+            console.log("err =", err );
+            callback(err);
+        });
     };
 
 //     factory.remove = function(data, callback) {

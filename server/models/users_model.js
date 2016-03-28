@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 //
 var UserSchema = new mongoose.Schema({
     //define schema here
-    name: String
+    name: { type: String, unique: true}
     }, { timestamps: {
         createdAt: 'created_at'
             }
@@ -15,4 +15,4 @@ var UserSchema = new mongoose.Schema({
 
 mongoose.model('users', UserSchema);
 
-console.log("exit test_models");
+console.log("exit user_models");

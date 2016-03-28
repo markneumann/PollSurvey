@@ -1,22 +1,23 @@
 <div ng-controller='QuestionController'>
     <h3>New Question</h3>
-    <h1>Insert new question design here</h1>
-    1. Question field
-    2. Correct Answer
-    3. Fake Answer 1
-    4. Fake Answer 2
-    5. Cancel and Submit
+    <pre>Insert new question design here
+        1. Question field DONE
+        2. Correct Answer DONE
+        3. Fake Answer 1 DONE
+        4. Fake Answer 2 DONE
+        5. Cancel and Submit DONE
+    </pre>
     <div >
-        <h3>Home | Add a Question</h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h3>Logout</h3> <!-- Put this in the dashboard-->
 
         <h2>New Question</h2>
             <form>
-                <form action='/questions' method='post'>
-                    Question: <input type='text' ng-model='new_q.question'><br>
-                    Correct Answer: <input type='text' ng-model='new_q.answer'><br>
-                    Fake Answer 1: <input type='text' ng-model='new_q.fake1'><br>
-                    Fake Answer 2: <input type='text' ng-model='new_q.fake2'><br>
+                <form name='newq' action='/questions' method='post'>
+                    Question: <textarea name='newq' rows ='4' cols='50'ng-model='new_q.question'></textarea><br>
+                    Correct Answer: <textarea name='newq' ng-model='new_q.answer'></textarea><br>
+                    Fake Answer 1: <textarea name='newq' ng-model='new_q.fake1'></textarea><br>
+                    Fake Answer 2: <textarea name='newq' ng-model='new_q.fake2'></textarea><br>
                     <input type='submit' ng-click="addquestion()">
+                    <input type='submit' value='Cancel' ng-click="new_q = {}">
                 </form>
             <form>
         <br> -->

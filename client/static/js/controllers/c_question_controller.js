@@ -13,28 +13,19 @@ MEANModule.controller('QuestionController', function($scope, QuestionFactory) {
 //
     $scope.addquestion = function() {
         // note the use of callbacks here
-        QuestionFactory.create($scope.new_question, function(theOutput) {
-            console.log("new question =", $scope.new_question);
+        QuestionFactory.create($scope.new_q, function(theOutput) {
+            console.log("new q =", $scope.new_q);
             console.log('returned question', theOutput);
-            $scope.questions.push(theOutput);
-            $scope.new_question = {};
-            console.log('new $scope.questions ', $scope.questions);
+            $scope = $scope || angular.element(document).scope();
+            if($scope.$$phase){
+                window.location = ('#/');
+            } else {
+                $location.path('#/');
+                $scope.$apply();
+            }
         });
     };
 //
-//     $scope.removequestion = function(question) {
-//         var removeThisQuestion =$scope.questions.indexOf(question);
-//         console.log('removequestion: ', removeThisQuestion);
-//         console.log('$scope.questions = ', $scope.questions);
-//         console.log('remove_id: ', $scope.questions[removeThisQuestion]._id);
-//         if(~removeThisQuestion){
-//             var remove_id = $scope.questions[removeThisQuestion]._id;
-//             // note the use of callbacks here
-//             QuestionFactory.remove(remove_id, function() {
-//                 console.log("remove question =", removeThisQuestion);
-//                 $scope.questions.splice(removeThisQuestion,1);
-//             });
-//         }
-//     };
+
 //
 });

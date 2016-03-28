@@ -2,7 +2,9 @@ console.log('loading test_controller');
 // //
 MEANModule.controller('TestController', function($scope, QuestionFactory, TestFactory) {
     // This line goes at the top of the controller callback because the minute the controller gets called upon we want to create the $scope.friends array
-    //scope.errorArea = {};
+    $scope.errorArea = {};
+
+
     console.log('top of TestController');
     QuestionFactory.index(function(data) {
         console.log("QuestionFactory.index", data);
@@ -31,23 +33,55 @@ MEANModule.controller('TestController', function($scope, QuestionFactory, TestFa
         $scope.questions[0] = data[arr[0]];
         $scope.questions[1] = data[arr[1]];
         $scope.questions[2] = data[arr[2]];
+        // $scope.question.firstanswer = {};
+        // $scope.question.secondanswer = {};
+        // $scope.question.thirdanswer = {};
         console.log("$scope.questions =", $scope.questions);
         // anything else that you want to happen after storing tests to $scope
     });
 
-//     $scope.addtest = function() {
-//         // note the use of callbacks here
-//         TestFactory.create($scope.new_test,
-//             function(theOutput) {
-//                 console.log("new test =", $scope.new_test);
-//                 console.log('returned test', theOutput);
-//                 $scope.tests.push(theOutput);
-//                 $scope.new_test = {};
-//                 console.log('new $scope.tests ', $scope.tests);
-//             },
-//             forErrors
-//         )
-//     };
+    $scope.submitTest = function() {
+        // First make sure that all of the questions were answered.
+        console.log('q1 ans = ', $scope.question.firstanswer);
+        console.log('q2 ans = ', $scope.question.secondanswer);
+        console.log('q3 ans = ', $scope.question.thirdanswer);
+        if($scope.question.firstanswer === undefined ||
+           $scope.question.secondanswer === undefined ||
+           $scope.question.thirdanswer === undefined ) {
+               $scope.errorArea = {'errmsg': 'You must answer all questions!'};
+        } else {
+            // we calcuate the score
+            var correct = 0;
+            if($scope.question.firstanswer === $scope.questions[0].answer) correct++;
+            if($scope.question.secondanswer === $scope.questions[1].answer) correct++;
+            if($scope.question.thirdanswer === $scope.questions[2].answer) correct++;
+            console.log('correct =', correct);
+            // Build the Test object
+            var results = {};
+            console.log('name =', $scope.user.name);
+            results.name = {'name': $scope.user.name};
+            results.score = {'score': correct};
+            console.log('results = ', results);
+            // To Do:
+            // 5. May need new partial on dashboard to highlight user score
+            TestFactory.create(results,
+                function(theOutput) {
+                    console.log('returned from factory', theOutput);
+                    $scope = $scope || angular.element(document).scope();
+                    if($scope.$$phase){
+                        window.location = ('#/');
+                    } else {
+                        $location.path('#/');
+                        $scope.$apply();
+                    }
+                },
+                forErrors
+            );
+
+        }  //end else
+
+};  // end submitTest
+
 //
 //     $scope.removetest = function(test) {
 //         var removeThisTest =$scope.tests.indexOf(test);
@@ -64,18 +98,18 @@ MEANModule.controller('TestController', function($scope, QuestionFactory, TestFa
 //         }
 //     };
 //
-//     function forErrors(output) {
-//         console.log('catch --->', output);
-//         if(output.data.error){  //handle other errors
-//             //console.log('error = ', output.data.error);
-//             console.log('error errmsg = ', output.data.error.errmsg);
-//             $scope.errorArea.errmsg = output.data.error.errmsg;
-//         }
-//         if(output.data.errmsg){   //handle not unique
-//             console.log('errmsg = ', output.data.errmsg);
-//             $scope.errorArea.errmsg = output.data.error;
-//
-//         }
-//     }
+    function forErrors(output) {
+        console.log('catch --->', output);
+        if(output.data.error){  //handle other errors
+            //console.log('error = ', output.data.error);
+            console.log('error errmsg = ', output.data.error.errmsg);
+            $scope.errorArea.errmsg = output.data.error.errmsg;
+        }
+        if(output.data.errmsg){   //handle not unique
+            console.log('errmsg = ', output.data.errmsg);
+            $scope.errorArea.errmsg = output.data.error;
+
+        }
+    }
 //
 });

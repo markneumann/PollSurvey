@@ -10,21 +10,54 @@
     <script src="/app.js"></script>
     <script src="/static/js/factories/c_question_factory.js"></script>
     <script src="/static/js/factories/c_test_factory.js"></script>
+    <script src="/static/js/factories/c_user_factory.js"></script>
     <script src="/static/js/controllers/c_dashboard_controller.js"></script>
     <script src="/static/js/controllers/c_question_controller.js"></script>
     <script src="/static/js/controllers/c_test_controller.js"></script>
+    <script src="/static/js/controllers/c_user_controller.js"></script>
     </script>
 
     <link rel='stylesheet' href='/static/css/styles.css'>
 
 </head>
-<!-- everything in the body is going to use the names controller (this gives us access to the names controller $scope) -->
 
 <body>
-    LOADED INDEX
+    <h1>Trivia Game</h1>
+    <h3><a href='#/'>Home</a> | <a href='#/question'>Add a Question</a> | Logout</h3>
+
+    <!-- User and Play and Score partial -->
+    <!-- <pre> Insert user design here
+        1. Show the Play Button
+        2. If User undefined, show the user input field
+        3. Send the user name to the factory, which will talk to server, which will Create
+           user if unknown, otherwise just return.
+        4. If user defined and new score, display the score and congratulations
+        5. This will all make heavy use of ng function if, hide
+        6. Logout button should simply set user to {}
+    </pre> -->
+    <div id = 'variable' ng-controller='UserController'>
+
+            <div id = 'login'>
+                Display if the user name is undefined.
+                Put the login input here.  Submit to User Controller login<br>
+                <input type="text" ng-model="user.name" placeholder="name" tabindex="1"><br>
+                <div class="button"><input type="submit" ng-click="login()" tabindex="2" value="Login"></div>
+                {{user.name}}
+            </div>
+
+            <div id = 'play' ng-model='user.name'>
+                Welcome {{user.name}}
+                <div class="playbutton"><input type='submit' value='PLAY!' ng-click='play()'></div>
+            </div>
+
+            <div id = 'score'>
+                <h2>That was great, {{user.name}}!  Your score is {{results.score}}/3 (100%).<h2>
+            </div>
     <hr>
-    <div>
-        <div ng-view="">
+        <div>
+            <div ng-view="">
+            </div>
+        </div>
     </div>
 
 

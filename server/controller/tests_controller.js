@@ -10,7 +10,8 @@ module.exports = (function() {
             console.log("--> tests index path");
             Test.find()
             .then(function(results){
-                console.log('results=',results);
+
+                // console.log('results=',results);
                 res.json(results);
             })
             .catch (function(err){
@@ -23,7 +24,8 @@ module.exports = (function() {
         new_test: function(req, res) {
             console.log("--> new test via Post path");
             var newTest = new Test({
-                name: req.body.name
+                name: req.body.name,
+                score: req.body.score
             });
             newTest.save()
             .then(function() {
