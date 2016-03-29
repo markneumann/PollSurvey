@@ -22,18 +22,18 @@ MEANModule.factory('PollFactory', function($http) {
 
 // create a new poll instance
     factory.create = function(data, callback) {
-        console.log('the poll name', data.name.name);
-        data.name = data.name.name;
-        data.question = data.question.question;
-        //console.log('revised data = ', data);
-        $http.post('/polls', data)
-            .then(function(output) {
-                console.log("post /polls response: ", output.data);
-                callback(output.data);
-            })
-            .catch(function(err) {
-                console.log("err =", err);
-            });
+        console.log('the poll id', data);
+        // data.name = data.name.name;
+        // data.question = data.question.question;
+        // //console.log('revised data = ', data);
+        // $http.post('/polls', data)
+        //     .then(function(output) {
+        //         console.log("post /polls response: ", output.data);
+        //         callback(output.data);
+        //     })
+        //     .catch(function(err) {
+        //         console.log("err =", err);
+        //     });
     };
 
 
