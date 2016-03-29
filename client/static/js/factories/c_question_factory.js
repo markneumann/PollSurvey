@@ -33,9 +33,10 @@ MEANModule.factory('QuestionFactory', function($http) {
         });
     };
 
-//     factory.remove = function(data, callback) {
-//         console.log("factory.remove data:", data);
-//         $http.get('/questions/remove/' + data)
+//      provide option to update option Count for each poll
+//     factory.update = function(data, callback) {
+//         console.log("factory.update data:", data);
+//         $http.get('/questions/:id/update' + data)
 //         .then(function() {
 //             console.log("remove response");
 //             callback();

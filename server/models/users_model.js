@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 //
 var UserSchema = new mongoose.Schema({
     //define schema here
-    name: { type: String, unique: true}
+    name: { type: String, required: true, unique: true},
     }, { timestamps: {
         createdAt: 'created_at'
             }

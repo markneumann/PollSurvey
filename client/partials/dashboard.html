@@ -2,20 +2,18 @@
 <div ng-controller='DashboardController'>
     <h3>Dashboard</h3>
 
-
-    <div id = 'score' ng-model='score' ng-if='(lastScore > -1)'>
-        <h2>That was great, {{user.name}}!  Your score is {{(100*lastScore / 3) | number:0}}%.<h2>
-    </div>
+    <h3><a href='#/question'>Create a New Poll</a> | <a href='' ng-click='logout()'>Logout</a></h3>
 
     <div id= 'filter'>
         <input type="text" ng-model="filter_name" placeholder="filter">   {{filter_name}}
     </div>
 
     <table>
-        <tr><th>Name</th><th>Score</th><th>Percentage</th></tr>
-        <tr ng-repeat="test in tests | filter: {name:filter_name}"  ng-class-odd="'d1'" ng-class-even="'d2'">
-            <td>{{test.name}}</td>
-            <td>{{test.score}}</td><td>{{(100*test.score / 3) | number:0}}%</td>
+        <tr><th>Name</th><th>Survey Question</th><th>Date Posted</th><th>Action</th></tr>
+        <tr ng-repeat="poll in polls | filter: {name:filter_name}"  ng-class-odd="'d1'" ng-class-even="'d2'">
+            <td>{{poll.name}}</td>
+            <td><a href='#/poll/+{{poll._id}}'> {{poll.question}}</a></td>
+            <td>Optional Action</td>
         </tr>
     </table>
 </div>

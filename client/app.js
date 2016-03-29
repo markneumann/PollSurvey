@@ -6,10 +6,13 @@ var MEANModule = angular.module('MEAN_app', ['ngRoute']);
 MEANModule.config(function($routeProvider){
     $routeProvider
     .when('/', {
+        templateUrl: '/partials/login.html'
+    })
+    .when('/dashboard', {
         templateUrl: '/partials/dashboard.html'
     })
-    .when('/test', {
-        templateUrl: '/partials/test.html'
+    .when('/poll/:id', {
+        templateUrl: '/partials/poll.html'
     })
     .when('/question', {
         templateUrl: '/partials/question.html'

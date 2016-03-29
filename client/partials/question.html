@@ -1,22 +1,16 @@
 <div ng-controller='QuestionController'>
     <h3>New Question</h3>
-    <pre>Insert new question design here
-        1. Question field DONE
-        2. Correct Answer DONE
-        3. Fake Answer 1 DONE
-        4. Fake Answer 2 DONE
-        5. Cancel and Submit DONE
-    </pre>
     <div >
 
         <h2>New Question</h2>
             <form>
                 <form name='newq' action='/questions' method='post'>
                     Question: <textarea name='newq' rows ='4' cols='50'ng-model='new_q.question'></textarea><br>
-                    Correct Answer: <textarea name='newq' ng-model='new_q.answer'></textarea><br>
-                    Fake Answer 1: <textarea name='newq' ng-model='new_q.fake1'></textarea><br>
-                    Fake Answer 2: <textarea name='newq' ng-model='new_q.fake2'></textarea><br>
-                    <input type='submit' ng-click="addquestion()">
+                    Option 1: <textarea name='newq' ng-model='new_q.option1'></textarea><br>
+                    Option 2: <textarea name='newq' ng-model='new_q.option2'></textarea><br>
+                    Option 3: <textarea name='newq' ng-model='new_q.option3'></textarea><br>
+                    Option 4: <textarea name='newq' ng-model='new_q.option4'></textarea><br>
+                    <input type='submit' ng-click="addquestion()" value = 'Create Poll'>
                     <input type='submit' value='Cancel' ng-click="new_q = {}">
                 </form>
             <form>

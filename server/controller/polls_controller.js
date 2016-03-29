@@ -1,14 +1,14 @@
-console.log("loading test_controller");
+console.log("loading poll_controller");
 var mongoose = require('mongoose');
-var Test = mongoose.model('tests');
+var Poll = mongoose.model('polls');
 var catch_errors = function(err){
     res.json({error:err});
 };
 module.exports = (function() {
     return {
         index:  function(req, res){
-            console.log("--> tests index path");
-            Test.find()
+            console.log("--> polls index path");
+            Poll.find()
             .then(function(results){
 
                 // console.log('results=',results);
@@ -21,17 +21,17 @@ module.exports = (function() {
             });
         },
 
-        new_test: function(req, res) {
-            console.log("--> new test via Post path");
-            var newTest = new Test({
+        new_poll: function(req, res) {
+            console.log("--> new poll via Post path");
+            var newPoll = new Poll({
                 name: req.body.name,
-                score: req.body.score
+                question: req.body.question
             });
-            newTest.save()
+            newPoll.save()
             .then(function() {
-                console.log("return 200", newTest);
+                console.log("return 200", newPoll);
                 res.status(200); // send back http 200 status if successful
-                res.json(newTest);
+                res.json(newPoll);
                 // res.json({success: true});
             })
             .catch (function(err){
@@ -41,10 +41,10 @@ module.exports = (function() {
             });
         },
 
-        // remove_test:  function(req, res){
-        //     console.log("--> remove test path");
+        // remove_poll:  function(req, res){
+        //     console.log("--> remove poll path");
         //     console.log(req.params);
-        //     Test.remove({_id: req.params.id})
+        //     Poll.remove({_id: req.params.id})
         //     .then(function() {
         //         console.log("return 200");
         //         res.status(200); // send back http 200 status if successful
@@ -57,11 +57,10 @@ module.exports = (function() {
         //     });
         // },
 
-        // NOT NEEDED AT THIS TIME
         // show_name:  function(req, res){
         //     console.log("--> show path");
         //     console.log(req.params);
-        //     Name.find({_id: req.params.id}, function(err, tests) {
+        //     Name.find({_id: req.params.id}, function(err, polls) {
         //         if(err) {
         //             console.log(err);
         //             res.render('errors', {title: 'you have errors!', errors: name.errors});

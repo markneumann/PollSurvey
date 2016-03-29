@@ -1,35 +1,34 @@
-console.log('loading test_factory');
-// // create the TestFactory
+console.log('loading poll_factory');
+// // create the PollFactory
 
-MEANModule.factory('TestFactory', function($http) {
+MEANModule.factory('PollFactory', function($http) {
 
     var factory = {};
-    var tests = [];
-    var lastScore = -1;
-
+    var polls = [];
+// return a list of all the polls
     factory.index = function(callback) {
         console.log("factory.index");
         // Where do we get access to $http?
-        $http.get('/tests')
+        $http.get('/polls')
             .then(function(output) {
-                tests = output.data;
+                polls = output.data;
                 console.log("output =", output.data);
-                callback(tests);
+                callback(polls);
             })
             .catch(function(err) {
                 console.log("err =", err);
             });
     };
 
-//
+// create a new poll instance
     factory.create = function(data, callback) {
-        console.log('the test name', data.name.name);
+        console.log('the poll name', data.name.name);
         data.name = data.name.name;
-        data.score = data.score.score;
+        data.question = data.question.question;
         //console.log('revised data = ', data);
-        $http.post('/tests', data)
+        $http.post('/polls', data)
             .then(function(output) {
-                console.log("post /tests response: ", output.data);
+                console.log("post /polls response: ", output.data);
                 callback(output.data);
             })
             .catch(function(err) {
@@ -37,18 +36,8 @@ MEANModule.factory('TestFactory', function($http) {
             });
     };
 
-    factory.setLastScore = function(data){
-        console.log('setLastScore = ', data.score);
-        lastScore = data.score;
-    };
 
-    factory.getLastScore = function(){
-        console.log('getLastScore =', lastScore);
-        return lastScore;
-    };
-
-
-//
+//  will need the option for creators of a question to delete that poll instance
 //     // factory.remove = function(data, callback) {
 //     //     console.log("factory.remove data:", data);
 //     //     $http.get('/cusomter/remove/' + data)

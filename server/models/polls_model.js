@@ -1,15 +1,16 @@
 //basic model
-console.log("loading test_model");
+console.log("loading polls_model");
 var mongoose = require('mongoose');
 //
-var TestSchema = new mongoose.Schema({
+var PollSchema = new mongoose.Schema({
     //define schema here
     name: String,
-    score: Number
+    question: String
+}, { timestamps: {createdAt: 'created_at'}
 });
 
 //NameSchema.path('name').required(true, 'Name cannot be blank');
 
-mongoose.model('tests', TestSchema);
+mongoose.model('polls', PollSchema);
 
 console.log("exit test_models");

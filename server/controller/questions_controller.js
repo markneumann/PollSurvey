@@ -24,9 +24,10 @@ module.exports = (function() {
             console.log("req.body =", req.body);
             var newQuestion = new Question({
                 question: req.body.question,
-                answer:  req.body.answer,
-                fake1: req.body.fake1,
-                fake2: req.body.fake2
+                option1:  req.body.option1,
+                option2:  req.body.option2,
+                option3:  req.body.option3,
+                option4:  req.body.option4
             });
             newQuestion.save()
             .then(function() {
