@@ -1,7 +1,7 @@
 console.log('loading test_controller');
 // //
 MEANModule.controller('TestController',
-    function($scope, QuestionFactory, TestFactory, UserFactory) {
+    function($scope, $location, QuestionFactory, TestFactory, UserFactory) {
     // This line goes at the top of the controller callback because the minute the controller gets called upon we want to create the $scope.friends array
     $scope.errorArea = {};
 
@@ -9,7 +9,6 @@ MEANModule.controller('TestController',
     console.log('top of TestController');
     QuestionFactory.index(function(data) {
         console.log("QuestionFactory.index", data);
-        console.log('data =', data);
         $scope.questions = {};
         var qnumber = data.length;
         var arr = [];
@@ -26,10 +25,10 @@ MEANModule.controller('TestController',
             }
             if(!found) arr[arr.length]=selector;
         }
-        console.log('arr= ', arr);
-        console.log('1 = ',data[arr[0]]);
-        console.log('2 = ',data[arr[1]]);
-        console.log('3 = ',data[arr[2]]);
+        // console.log('arr= ', arr);
+        // console.log('1 = ',data[arr[0]]);
+        // console.log('2 = ',data[arr[1]]);
+        // console.log('3 = ',data[arr[2]]);
 
         $scope.questions[0] = data[arr[0]];
         $scope.questions[1] = data[arr[1]];
@@ -43,13 +42,13 @@ MEANModule.controller('TestController',
 
     $scope.submitTest = function() {
         // First make sure that all of the questions were answered.
-        console.log('q1 ans = ', $scope.question.firstanswer);
-        console.log('q2 ans = ', $scope.question.secondanswer);
-        console.log('q3 ans = ', $scope.question.thirdanswer);
+        // console.log('q1 ans = ', $scope.question.firstanswer);
+        // console.log('q2 ans = ', $scope.question.secondanswer);
+        // console.log('q3 ans = ', $scope.question.thirdanswer);
         if($scope.question.firstanswer === undefined ||
            $scope.question.secondanswer === undefined ||
            $scope.question.thirdanswer === undefined ) {
-               $scope.errorArea = {'errmsg': 'You must answer all questions!'};
+           $scope.errorArea = {'errmsg': 'You must answer all questions!'};
         } else {
             // we calcuate the score
             var correct = 0;
@@ -59,24 +58,19 @@ MEANModule.controller('TestController',
             console.log('correct =', correct);
             // Build the Test object
             var results = {};
-            console.log('name =', $scope.user.name);
-            results.name = {'name': $scope.user.name};
+            console.log('currentUser =', UserFactory.getUser().name);
+            results.name = {'name': UserFactory.getUser().name};
             results.score = {'score': correct};
-            console.log('results = ', results);
+            TestFactory.setLastScore({'score' : correct});
+            //console.log('results = ', results);
             // To Do:
             // 5. May need new partial on dashboard to highlight user score
             TestFactory.create(results,
                 function(theOutput) {
-                    console.log('returned from factory', theOutput);
-                    $scope.playedGame = true;
-                    $scope.theResult = correct;
-                    $scope = $scope || angular.element(document).scope();
-                    if($scope.$$phase){
-                        window.location = ('#/');
-                    } else {
-                        $location.path('#/');
-                        $scope.$apply();
-                    }
+                    // console.log('returned from factory', theOutput);
+                    $scope.lastScore = TestFactory.getLastScore();
+                    console.log('getLastScore =', $scope.lastScore);
+                    $location.url('/');
                 },
                 forErrors
             );

@@ -1,6 +1,6 @@
 console.log('loading question_controller');
 // // Now let's create a controller with some hardcoded data!
-MEANModule.controller('QuestionController', function($scope, QuestionFactory) {
+MEANModule.controller('QuestionController', function($scope, $question, QuestionFactory) {
     // This line goes at the top of the controller callback because the minute the controller gets called upon we want to create the $scope.questions array
     console.log('top of question controller');
     // QuestionFactory.index(function(data) {
@@ -16,13 +16,7 @@ MEANModule.controller('QuestionController', function($scope, QuestionFactory) {
         QuestionFactory.create($scope.new_q, function(theOutput) {
             console.log("new q =", $scope.new_q);
             console.log('returned question', theOutput);
-            $scope = $scope || angular.element(document).scope();
-            if($scope.$$phase){
-                window.location = ('#/');
-            } else {
-                $location.path('#/');
-                $scope.$apply();
-            }
+            $location.url('/');
         });
     };
 //

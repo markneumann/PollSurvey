@@ -5,6 +5,8 @@ MEANModule.factory('TestFactory', function($http) {
 
     var factory = {};
     var tests = [];
+    var lastScore = -1;
+
     factory.index = function(callback) {
         console.log("factory.index");
         // Where do we get access to $http?
@@ -21,11 +23,10 @@ MEANModule.factory('TestFactory', function($http) {
 
 //
     factory.create = function(data, callback) {
-        console.log("factory.new data:", data);
         console.log('the test name', data.name.name);
         data.name = data.name.name;
         data.score = data.score.score;
-        console.log('revised data = ', data);
+        //console.log('revised data = ', data);
         $http.post('/tests', data)
             .then(function(output) {
                 console.log("post /tests response: ", output.data);
@@ -35,6 +36,18 @@ MEANModule.factory('TestFactory', function($http) {
                 console.log("err =", err);
             });
     };
+
+    factory.setLastScore = function(data){
+        console.log('setLastScore = ', data.score);
+        lastScore = data.score;
+    };
+
+    factory.getLastScore = function(){
+        console.log('getLastScore =', lastScore);
+        return lastScore;
+    };
+
+
 //
 //     // factory.remove = function(data, callback) {
 //     //     console.log("factory.remove data:", data);

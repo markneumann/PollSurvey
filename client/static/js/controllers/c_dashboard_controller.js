@@ -4,13 +4,14 @@ MEANModule.controller('DashboardController', function($scope, TestFactory) {
     // This line goes at the top of the controller callback because the minute the controller gets called upon we want to create the $scope.tests array
 
     console.log('top of dashboard controller');
+    $scope.lastScore = TestFactory.getLastScore();
     TestFactory.index(function(data) {
         console.log("TestFactory.index");
         $scope.tests = data;
         console.log("$scope.tests =", $scope.tests);
         // anything else that you want to happen after storing tests to $scope
     });
-    console.log('return from TestFactory');
+    //console.log('return from TestFactory');
 
 //     $scope.addtest = function() {
 //         // note the use of callbacks here

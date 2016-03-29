@@ -2,6 +2,11 @@
 <div ng-controller='DashboardController'>
     <h3>Dashboard</h3>
 
+
+    <div id = 'score' ng-model='score' ng-if='(lastScore > -1)'>
+        <h2>That was great, {{user.name}}!  Your score is {{(100*lastScore / 3) | number:0}}%.<h2>
+    </div>
+
     <div id= 'filter'>
         <input type="text" ng-model="filter_name" placeholder="filter">   {{filter_name}}
     </div>
