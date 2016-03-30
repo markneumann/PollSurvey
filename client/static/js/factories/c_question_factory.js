@@ -3,6 +3,7 @@ console.log('loading question_factory');
 // console.log('MEANModule',MEANModule);
 MEANModule.factory('QuestionFactory', function($http) {
     //console.log('top of QuestionFactory');
+    //not used
     var factory = {};
     var questions = [];
     factory.index = function(callback) {
@@ -19,7 +20,7 @@ MEANModule.factory('QuestionFactory', function($http) {
             callback(err);
         });
     };
-//
+//  called from Questions Controller to create a new question
     factory.create = function(data, callback) {
         console.log("factory.new data:", data);
         $http.post('/questions',data)
@@ -33,7 +34,7 @@ MEANModule.factory('QuestionFactory', function($http) {
         });
     };
 
-     //provide option to update option Count for each poll
+     //called from poll controller to show the question and data
     factory.show = function(data, callback) {
         console.log("factory.show data:", data);
         $http.get('/questions/show/' + data)
@@ -45,6 +46,20 @@ MEANModule.factory('QuestionFactory', function($http) {
             console.log("err =", err );
         });
     };
+
+    //called from poll controller to show the question and data
+   factory.update = function(data, callback) {
+       //console.log("factory.update data:", data);
+       $http.put('/questions/edit/', data)
+       .then(function(output) {
+           console.log("show response",output);
+           callback(output.data);
+       })
+       .catch (function(err){
+           console.log("err =", err );
+       });
+   };
+
 //
      return factory;
 });

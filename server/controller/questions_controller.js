@@ -57,26 +57,39 @@ module.exports = (function() {
             });
         },
         //
-//         edit_question: function(req, res) {
-//             console.log("--> edit question path");
-//             console.log("req.body =", req.body);
-//             // var editQuestion = new Question({
-//             //     name: req.body.name,
-//             //     product:  req.body.product,
-//             //     quantity: req.body.quantity
-//             // });
-//             questions.findByIdAndUpdate(req.params.id, {set: req.body})
-//             .then(function() {
-//                 console.log("return 200");
-//                 res.status(200); // send back http 200 status if successful
-//                 res.json({success:'true'});
-//             })
-//             .catch (function(err){
-//                 console.log(err);
-//                 res.status(500); // send back http 200 status if successful
-//                 res.json({error: err});
-//             });
-//         },
+        edit_question: function(req, res) {
+            console.log("--> edit question path");
+            console.log("req.body =", req.body);
+            var q_id = {_id: req.body.q_id};
+            var updateStr = '{$inc : {"option'+req.body.opt_num+'count" : 1}}';
+            var update ={};
+            //update = {$inc : {'option'+req.body.opt_num+'count' : 1 }};
+            console.log('update =', update);
+            console.log('updateStr =', updateStr);
+            console.log('q_id = ',q_id);
+            // this find seems to work okay with the given q_id
+            // Question.findOne(q_id, function(err, output) {
+            //     if(err) {
+            //         console.log(err);
+            //         //res.render('errors', {title: 'you have errors!', errors: question.err});
+            //     } else {
+            //         console.log('found this',output);
+            //     }
+            // });
+            //  and this returns 100, but doesn't seem to increment anything
+            //Question.findByIdAndUpdate(q_id,updateStr)
+            Question.findByIdAndUpdate(q_id,{$inc : {"option'+req.body.opt_num+'count" : 1}})
+            .then(function() {
+                console.log("return 200");
+                res.status(200); // send back http 200 status if successful
+                res.json({success:'true'});
+            })
+            .catch (function(err){
+                console.log(err);
+                res.status(500); // send back http 200 status if successful
+                res.json({error: err});
+            });
+        },
 //
 //         // remove_question:  function(req, res){
 //         //     console.log("--> remove question path");

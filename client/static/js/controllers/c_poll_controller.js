@@ -13,15 +13,20 @@ MEANModule.controller('PollController', function($scope, $routeParams, $location
         $scope.question = data;
     });
 
-    // // Show a question for the new poll
-    // $scope.submit_poll = function(optionNumber) {
-    //     console.log('submit_poll event');
-    //     //var new_count += $scope.optionNumber;
-    //     PollFactory.create($scope.new_poll, function(theOutput) {
-    //         console.log("new poll =", $scope.new_poll);
-    //         console.log('returned poll', theOutput);
-    //     });
-    // };
+    // Accept a vote and update the question record for that option1
+    $scope.submit_poll = function(q_id, opt_num) {
+        inc_opt_count = {
+            q_id: q_id,
+            opt_num: opt_num
+        };
+        console.log('submit_poll event ', inc_opt_count);
+        //var new_count += $scope.optionNumber;
+        QuestionFactory.update(inc_opt_count, function(theOutput) {
+            console.log("new poll =", $scope.new_poll);
+            console.log('returned poll', theOutput);
+            //$location.url('/dashboard');
+        });
+    };
 
     // // Create the new poll record
     // $scope.submit_poll = function(optionNumber) {
