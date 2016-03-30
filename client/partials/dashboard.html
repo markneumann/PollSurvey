@@ -12,7 +12,7 @@
         <tr><th>Name</th><th>Survey Question</th><th>Date Posted</th><th>Action</th></tr>
         <tr ng-repeat="poll in polls | filter: {name:filter_name}"  ng-class-odd="'d1'" ng-class-even="'d2'">
             <td>{{poll.name}}</td>
-            <td><a href='#/poll/+{{poll.question}}'> {{poll.question}}</a></td>
+            <td><a href='' ng-click='addpoll(poll.q_id,poll.question)'> {{poll.question}}</a></td>
             <td>Optional Action</td>
         </tr>
     </table>

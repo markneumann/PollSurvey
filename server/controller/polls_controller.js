@@ -22,9 +22,10 @@ module.exports = (function() {
         },
 
         new_poll: function(req, res) {
-            console.log("--> new poll via Post path");
+            console.log("--> new poll - body =", req.body);
             var newPoll = new Poll({
                 name: req.body.name,
+                q_id: req.body.q_id,
                 question: req.body.question
             });
             newPoll.save()

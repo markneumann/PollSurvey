@@ -33,18 +33,18 @@ MEANModule.factory('QuestionFactory', function($http) {
         });
     };
 
-//      provide option to update option Count for each poll
-//     factory.update = function(data, callback) {
-//         console.log("factory.update data:", data);
-//         $http.get('/questions/:id/update' + data)
-//         .then(function() {
-//             console.log("remove response");
-//             callback();
-//         })
-//         .catch (function(err){
-//             console.log("err =", err );
-//         });
-//     };
+     //provide option to update option Count for each poll
+    factory.show = function(data, callback) {
+        console.log("factory.show data:", data);
+        $http.get('/questions/show/' + data)
+        .then(function(output) {
+            console.log("show response",output);
+            callback(output.data);
+        })
+        .catch (function(err){
+            console.log("err =", err );
+        });
+    };
 //
      return factory;
 });

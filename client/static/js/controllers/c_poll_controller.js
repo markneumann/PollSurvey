@@ -6,17 +6,22 @@ MEANModule.controller('PollController', function($scope, $routeParams, $location
 
     console.log('top of PollController');
     // Create a poll
-    console.log('route params', $routeParams.id);
+    console.log('route params', $routeParams);
     var id = $routeParams.id;
-    PollFactory.create(id, function(theOutput) {
-        console.log('returned from PollFactory.create');
-        // poll.name = {'name': UserFactory.getUser().name};
-        // poll.question = {'question': question};
-        // QuestionFactory.show(req.params.id, function(database) {
-        //     console.log('returning question from factory');
-        //     $scope.question = data;
-        //});
+    QuestionFactory.show(id, function(data) {
+        console.log('returning question from factory');
+        $scope.question = data;
     });
+
+    // // Show a question for the new poll
+    // $scope.submit_poll = function(optionNumber) {
+    //     console.log('submit_poll event');
+    //     //var new_count += $scope.optionNumber;
+    //     PollFactory.create($scope.new_poll, function(theOutput) {
+    //         console.log("new poll =", $scope.new_poll);
+    //         console.log('returned poll', theOutput);
+    //     });
+    // };
 
     // // Create the new poll record
     // $scope.submit_poll = function(optionNumber) {

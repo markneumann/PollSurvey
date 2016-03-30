@@ -6,6 +6,7 @@ MEANModule.factory('UserFactory', function($http) {
     var factory = {};
     var tests = [];
     var currentUser = {};
+    //var lastScore = -1;
 
 //
     factory.login = function(data, callback) {

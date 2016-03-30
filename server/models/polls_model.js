@@ -5,6 +5,7 @@ var mongoose = require('mongoose');
 var PollSchema = new mongoose.Schema({
     //define schema here
     name: String,
+    q_id: String,
     question: String
 }, { timestamps: {createdAt: 'created_at'}
 });
