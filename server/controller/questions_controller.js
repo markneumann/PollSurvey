@@ -61,10 +61,25 @@ module.exports = (function() {
         edit_question: function(req, res) {
             console.log("--> edit question path");
             console.log("req.body =", req.body);
+            var update = {};
             var q_id = {_id: req.body.q_id};
-            var updateStr = '{$inc : {"option'+req.body.opt_num+'count" : 1}}';
-            var update ={};
-            //update = {$inc : {'option'+req.body.opt_num+'count' : 1 }};
+            console.log('opt_num type=', typeof(req.body.opt_num));
+            // ugly hack to get the $inc code to work!
+            if(req.body.opt_num === 1) {
+                update = {$inc : {'option1count' : 1}};
+            }
+            else if (req.body.opt_num === 2) {
+                update = {$inc : {'option2count' : 2}};
+            }
+            else if (req.body.opt_num === 3) {
+                update = {$inc : {'option3count' : 3}};
+            }
+            else{
+                update = {$inc : {'option4count' : 4}};
+            }
+
+            var updateStr = '{$inc : {"option'+req.body.opt_num +'count" : 1}}';
+            //update = {$inc : {'option'+req.body.opt _num+'count' : 1 }};
             console.log('update =', update);
             console.log('updateStr =', updateStr);
             console.log('q_id = ',q_id);
@@ -79,7 +94,7 @@ module.exports = (function() {
             // });
             //  and this returns 100, but doesn't seem to increment anything
             //Question.findByIdAndUpdate(q_id,updateStr)
-            Question.findByIdAndUpdate(q_id,{$inc : {"option'+req.body.opt_num+'count" : 1}})
+            Question.findByIdAndUpdate(q_id,update)
             .then(function() {
                 console.log("return 200");
                 res.status(200); // send back http 200 status if successful

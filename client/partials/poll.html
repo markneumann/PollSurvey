@@ -8,7 +8,7 @@
     </div>
 
     <div ng-model='questions'>
-    Question: {{question.question}}
+    Question: {{question.question}}<br>
     ID: {{question._id}}
     <table>
         <tr><th>Option</th><th>Current Count of Votes</th><th>Action</th></tr>
@@ -23,21 +23,21 @@
             <td>{{question.option2}}</td>
             <td>{{question.option2count}}</td>
             <td>
-                <div class="button"><input type='submit' value='Submit' ng-click='submit_poll(questions._id,2)'</div>
+                <div class="button"><input type='submit' value='Submit' ng-click='submit_poll(question._id,2)'</div>
             </td>
         </tr>
         <tr>
             <td>{{question.option3}}</td>
             <td>{{question.option3count}}</td>
             <td>
-                <div class="button"><input type='submit' value='Submit' ng-click='submit_poll(questions._id,3)'</div>
+                <div class="button"><input type='submit' value='Submit' ng-click='submit_poll(question._id,3)'</div>
             </td>
         </tr>
         <tr>
             <td>{{question.option4}}</td>
             <td>{{question.option4count}}</td>
             <td>
-                <div class="button"><input type='submit' value='Submit' ng-click='submit_poll(questions._id,4)'</div>
+                <div class="button"><input type='submit' value='Submit' ng-click='submit_poll(question._id,4)'</div>
             </td>
         </tr>
     </table>
