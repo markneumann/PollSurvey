@@ -9,13 +9,13 @@ var QuestionSchema = new mongoose.Schema({
     name: String,
     question: String,
     option1: String,
-    option1count: Number,
+    option1count: { type: Number, default: 0 },
     option2: String,
-    option2count: Number,
+    option2count: { type: Number, default: 0 },
     option3: String,
-    option3count: Number,
+    option3count: { type: Number, default: 0 },
     option4: String,
-    option4count: Number
+    option4count: { type: Number, default: 0 }
 });
 
 // could add validations to require some text if there is time

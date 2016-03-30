@@ -23,6 +23,7 @@ module.exports = (function() {
             console.log("--> new question path");
             console.log("req.body =", req.body);
             var newQuestion = new Question({
+                name:     req.body.name,
                 question: req.body.question,
                 option1:  req.body.option1,
                 option2:  req.body.option2,
