@@ -24,7 +24,8 @@ MEANModule.controller('PollController', function($scope, $routeParams, $location
         QuestionFactory.update(inc_opt_count, function(theOutput) {
             console.log("new poll =", $scope.new_poll);
             console.log('returned poll', theOutput);
-            //$location.url('/dashboard');
+
+            $location.url('/dashboard');
         });
     };
 
